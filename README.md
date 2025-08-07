@@ -59,7 +59,7 @@ Inventory-Management-System-C/
 ### Quick Start
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/Abhishek-Atole/Inventory-Management-System-C
 cd Inventory-Management-System-C
 
 # Compile the program
