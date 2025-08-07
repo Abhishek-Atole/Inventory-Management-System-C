@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Build and Test
 
 on:
   push:
@@ -6,129 +6,38 @@ on:
   pull_request:
     branches: [ "main" ]
 
-permissions:
-  contents: read
-
 jobs:
-  build-windows:
-    runs-on: windows-latest
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    
+    runs-on: ${{ matrix.os }}
     
     steps:
     - uses: actions/checkout@v4
     
-    - name: Setup MinGW
+    - name: Setup GCC (Windows)
+      if: matrix.os == 'windows-latest'
       uses: egor-tensin/setup-mingw@v2
-      with:
-        platform: x64
     
-    - name: Verify GCC installation
-      run: gcc --version
+    - name: Install GCC (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: sudo apt-get update && sudo apt-get install -y gcc
     
-    - name: Build project
-      run: |
-        gcc -Wall -Wextra -std=c99 -Iinclude src/main.c src/inventory.c src/database.c -o inventory_system.exe
-    
-    - name: Test executable exists
-      run: |
-        if (Test-Path inventory_system.exe) {
-          Write-Output "✅ Build successful - executable created"
-          ls -la inventory_system.exe
-        } else {
-          Write-Error "❌ Build failed - executable not found"
-          exit 1
-        }
-    
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: inventory-system-windows
-        path: inventory_system.exe
-
-  build-linux:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Install GCC
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y gcc build-essential
-    
-    - name: Verify GCC installation
-      run: gcc --version
+    - name: Install GCC (macOS)
+      if: matrix.os == 'macos-latest'
+      run: brew install gcc
     
     - name: Build project
       run: |
-        gcc -Wall -Wextra -std=c99 -Iinclude src/main.c src/inventory.c src/database.c -o inventory_system
+        gcc -Wall -Wextra -std=c99 -Iinclude src/main.c src/inventory.c src/database.c -o inventory_system${{ matrix.os == 'windows-latest' && '.exe' || '' }}
     
-    - name: Test executable
+    - name: Test build
+      shell: bash
       run: |
-        if [ -f inventory_system ]; then
-          echo "✅ Build successful - executable created"
-          ls -la inventory_system
+        if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+          test -f inventory_system.exe && echo "✅ Windows build successful"
         else
-          echo "❌ Build failed - executable not found"
-          exit 1
+          test -f inventory_system && echo "✅ Unix build successful"
         fi
-    
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: inventory-system-linux
-        path: inventory_system
-
-  build-macos:
-    runs-on: macos-latest
-    
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Install GCC
-      run: |
-        brew install gcc
-    
-    - name: Verify GCC installation
-      run: gcc --version
-    
-    - name: Build project
-      run: |
-        gcc -Wall -Wextra -std=c99 -Iinclude src/main.c src/inventory.c src/database.c -o inventory_system
-    
-    - name: Test executable
-      run: |
-        if [ -f inventory_system ]; then
-          echo "✅ Build successful - executable created"
-          ls -la inventory_system
-        else
-          echo "❌ Build failed - executable not found"
-          exit 1
-        fi
-    
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: inventory-system-macos
-        path: inventory_system
-
-  test:
-    needs: [build-windows, build-linux, build-macos]
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Download Linux artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: inventory-system-linux
-    
-    - name: Make executable
-      run: chmod +x inventory_system
-    
-    - name: Test with sample data
-      run: |
-        echo "Testing inventory system..."
-        # Note: Since this is an interactive program, we can only test compilation
-        echo "✅ All builds completed successfully"
-        echo "📦 Artifacts created for Windows, Linux, and macOS"
