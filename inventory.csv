@@ -1,11 +1,16 @@
 ID,Name,Quantity,Price
-106,USB Cable,200,150.00
-102,Mouse,150,500.00
-103,Keyboard,6000,1200.00
-109,Webcam,45,1800.00
-105,Headphones,60,2500.00
-108,RAM 8GB,35,2800.00
-107,Hard Drive,40,3500.00
-110,Speakers,25,4500.00
-104,Monitor,30,12000.00
 101,Laptop,25,45000.00
+102,Mouse,150,500.00
+103,Keyboard,80,1200.00
+104,Monitor,30,12000.00
+105,Headphones,60,2500.00
+106,USB Cable,200,150.00
+107,Hard Drive,40,3500.00
+108,RAM 8GB,35,2800.00
+109,Webcam,45,1800.00
+110,Speakers,25,4500.00
+111,Desktop Computer,15,35000.00
+112,Wireless Mouse,100,800.00
+113,Mechanical Keyboard,50,2500.00
+114,LED Monitor,20,15000.00
+115,Gaming Headset,40,3500.00
