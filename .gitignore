@@ -1,10 +1,25 @@
-# Ignore build output
+# Compiled executables and build output
 /build/
 *.o
 *.obj
 *.exe
+a.exe
+inventory_system
+inventory_system.exe
 
-# OS junk
+# Object files
+obj/
+
+# Backup files
+backup_*.csv
+*.bak
+
+# IDE files
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
 .DS_Store
 Thumbs.db
 
