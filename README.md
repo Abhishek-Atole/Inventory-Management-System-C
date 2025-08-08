@@ -14,62 +14,40 @@ A robust, feature-rich **Inventory & Stock Management System** written in the **
 
 </div>
 
-### 📦 **Inventory Operations**
+### 📋 **Menu Navigation**
+<div align="center">
+
+![Main Menu Navigation](images/02.png)
+*Interactive menu system showing all available inventory management options*
+
+</div>
+
+### 📦 **Inventory Display & Management**
 
 <table>
 <tr>
 <td width="50%">
 
-![Add New Item](images/02.png)
-*Add New Item - Input validation and error handling*
+![Display All Items](images/03.png)
+*Display All Items - Complete inventory listing with formatted table view*
 
 </td>
 <td width="50%">
 
-![Display Inventory](images/03.png)
-*Display All Items - Formatted table with totals*
+![Low Stock Alert](images/04.png)
+*Low Stock Alert - Configurable threshold warnings for inventory monitoring*
 
 </td>
 </tr>
 </table>
 
-### 🔍 **Search & Update Features**
+### 📊 **Analysis & Statistics**
+<div align="center">
 
-<table>
-<tr>
-<td width="50%">
+![Inventory Statistics](images/05.png)
+*Comprehensive inventory statistics showing total value, item counts, and financial analysis*
 
-![Search by ID](images/04.png)
-*Search by ID - Quick item lookup functionality*
-
-</td>
-<td width="50%">
-
-![Update Item](images/05.png)
-*Update Item - Modify existing inventory data*
-
-</td>
-</tr>
-</table>
-
-### 📊 **Analysis & Reports**
-
-<table>
-<tr>
-<td width="50%">
-
-![Low Stock Alert](images/06.png)
-*Low Stock Alert - Configurable threshold warnings*
-
-</td>
-<td width="50%">
-
-![Statistics](images/07.png)
-*Inventory Statistics - Comprehensive reporting*
-
-</td>
-</tr>
-</table>
+</div>
 
 ### 💾 **File Operations**
 
@@ -77,14 +55,33 @@ A robust, feature-rich **Inventory & Stock Management System** written in the **
 <tr>
 <td width="50%">
 
-![File Operations](images/08.png)
-*Save/Load Operations - CSV import/export functionality*
+![Load Inventory from CSV](images/06.png)
+*Load Inventory - Import inventory items from CSV file with data validation*
 
 </td>
 <td width="50%">
 
-![Backup System](images/09.png)
-*Automatic Backup - Timestamped data protection*
+![Create Backup](images/07.png)
+*Create Backup - Generate timestamped backup of current inventory data*
+
+</td>
+</tr>
+</table>
+
+### 🔍 **Search & Save Operations**
+
+<table>
+<tr>
+<td width="50%">
+
+![Search by ID](images/08.png)
+*Search by ID - Quick item lookup functionality with detailed results*
+
+</td>
+<td width="50%">
+
+![Save and Exit](images/09.png)
+*Save Inventory & Exit - Persistent data storage with auto-save functionality*
 
 </td>
 </tr>
@@ -134,14 +131,14 @@ Inventory-Management-System-C/
 │   └── database.h      # Database function prototypes
 ├── images/             # System screenshots
 │   ├── 01.png         # Main menu interface
-│   ├── 02.png         # Add item functionality
-│   ├── 03.png         # Display inventory
-│   ├── 04.png         # Search operations
-│   ├── 05.png         # Update functionality
-│   ├── 06.png         # Low stock alerts
-│   ├── 07.png         # Statistics reporting
-│   ├── 08.png         # File operations
-│   └── 09.png         # Backup system
+│   ├── 02.png         # Menu navigation system
+│   ├── 03.png         # Display all inventory items
+│   ├── 04.png         # Low stock alert system
+│   ├── 05.png         # Inventory statistics & analysis
+│   ├── 06.png         # Load inventory from CSV file
+│   ├── 07.png         # Create backup functionality
+│   ├── 08.png         # Search inventory by ID
+│   └── 09.png         # Save inventory and exit program
 ├── .vscode/           # VS Code configuration
 ├── .gitignore         # Git ignore rules
 ├── Makefile           # Build configuration
@@ -209,12 +206,14 @@ make debug
 
 ## 💡 Usage Guide
 
-1. **Starting the System**: Run the executable to see the main menu
-2. **Loading Sample Data**: Use option 10 to load `sample_data.csv`
-3. **Adding Items**: Use option 1 with proper validation
-4. **Searching**: Options 3 & 4 for ID and name-based searches
-5. **Reports**: Option 13 for comprehensive statistics
-6. **Backups**: Option 11 creates timestamped backups automatically
+1. **Starting the System**: Run the executable to see the main menu (Image 01 & 02)
+2. **Loading Sample Data**: Use option 10 to load CSV files (Image 06)
+3. **Viewing Inventory**: Use option 2 to display all items (Image 03)
+4. **Monitoring Stock**: Use option 7 for low stock alerts (Image 04)
+5. **Analytics**: Use option 13 for comprehensive statistics (Image 05)
+6. **Searching**: Use option 3 for ID-based searches (Image 08)
+7. **Backups**: Use option 11 to create timestamped backups (Image 07)
+8. **Saving**: Auto-save on exit ensures data persistence (Image 09)
 
 ---
 
